@@ -16,8 +16,22 @@ def findAllfile(path, allfile):
     return allfile 
 
 
+import json
+def modify_json_data(filename:str):
+    '''
+    从json文件读取数据，修改某一项后保存到文件
+    '''
+    data = json.load(open(filename, 'rb'))
+    # 修改'imagePath'，绝对路径改为相对路径
+    # data['imagePath'] = os.path.basename(data['imagePath'])
+    json.dump(data, open(filename, 'w'))
+
+
 import argparse
 def get_parser():
+    '''
+    添加运行时的命令行参数。
+    '''
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     
     parser.add_argument("--example",
